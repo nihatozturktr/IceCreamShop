@@ -1,19 +1,24 @@
 package be.intecbrussel.eatables;
 
-public class Cone implements Eatable{
+import java.util.Arrays;
 
-    private Flavor [] balls;
+public class Cone implements IEatable{
 
-    public Flavor[] getBalls() {
-        return balls;
+    private Flavor[] balls;
+
+
+    public Cone(){
+
     }
 
-    public void setBalls(Flavor[] balls) {
+    public Cone(Flavor[] balls) {
         this.balls = balls;
     }
 
     @Override
     public void eat() {
-
+        System.out.println("Eat a cone with " + Arrays.toString(balls)+ " flavors");
     }
+
+
 }
