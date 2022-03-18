@@ -4,10 +4,11 @@ import be.intecbrussel.eatables.*;
 
 public interface IIceCreamSeller extends IProfitable {
 
-   IEatable orderCone(Flavor [] flavors);
-   IceRocket orderIceRocket();
-   Magnum orderMagnum(MagnumType magnumType);
+   Cone orderCone(Flavor[] balls) throws NoMoreIceCreamException;
 
+   IceRocket orderIceRocket() throws NoMoreIceCreamException;
+
+   Magnum orderMagnum(MagnumType type) throws NoMoreIceCreamException;
 
 
 

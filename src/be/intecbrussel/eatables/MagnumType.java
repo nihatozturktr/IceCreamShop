@@ -1,24 +1,10 @@
 package be.intecbrussel.eatables;
 
 public enum MagnumType {
-    MILK_CHOCOLATE(0.75),
-    WHITE_CHOCOLATE(1),
-    BLACK_CHOCOLATE(1.5),
-    ALPINE_NUTS(1.5),
-    ROMANTICS_STRAWBERRIES(1.75);
-private double value;
+    MILK_CHOCOLATE(),
+    WHITE_CHOCOLATE(),
+    BLACK_CHOCOLATE(),
+    ALPINE_NUTS(),
+    ROMANTICS_STRAWBERRIES();
 
-    public double getValue() {
-        return value;
-    }
-
-    public void setValue(double value) {
-        this.value = value;
-    }
-
-    MagnumType(double value) {
-        this.value = value;
-
-
-    }
 }

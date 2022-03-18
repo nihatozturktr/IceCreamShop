@@ -9,40 +9,67 @@ public class IceCreamCar implements IIceCreamSeller{
     private Stock stock;
     private double profit;
 
-    public IceCreamCar() {
-    }
 
-    public IceCreamCar(PriceList priceList,Stock stock) {
+    public IceCreamCar(PriceList priceList, Stock stock) {
         this.priceList = priceList;
-        this.stock=stock;
+        this.stock = stock;
     }
 
 
     @Override
-    public IEatable orderCone(Flavor[] flavors) {
-        return null;
+    public Cone orderCone(Flavor[] balls) throws NoMoreIceCreamException {
+        return prepareCone(balls);
+    }
 
+    private Cone prepareCone(Flavor[] balls) throws NoMoreIceCreamException {
+        if (stock.getCones() <= 0 || stock.getBalls() <= 0){
+            throw new NoMoreIceCreamException("No more Balls or Cones");
+        }else {
+            profit += priceList.getBallPrice();
+            stock.setBalls(stock.getBalls() - balls.length);
+            stock.setCones(stock.getCones() - 1);
+            System.out.println("Your ice cream is being prepared");
+
+        }
+        return new Cone(balls);
     }
 
     @Override
-    public IceRocket orderIceRocket() {
-        return null;
+    public IceRocket orderIceRocket() throws NoMoreIceCreamException {
+        return prepareRocket();
+    }
+
+    public IceRocket prepareRocket()throws NoMoreIceCreamException{
+        if (stock.getIceRockets() <= 0){
+            throw new NoMoreIceCreamException("No more ice rocket");
+        }else {
+            profit += priceList.getRocketPrice();
+            stock.setIceRockets(stock.getIceRockets() - 1);
+            System.out.println("There are enough rocket");
+
+        }
+        return new IceRocket();
     }
 
     @Override
-    public Magnum orderMagnum(MagnumType magnumType) {
-        return null;
+    public Magnum orderMagnum(MagnumType type) throws NoMoreIceCreamException {
+        return prepareMagnum(type);
     }
 
-    @Override
-    public void getProfit(double Profit) {
+    public Magnum prepareMagnum(MagnumType type)throws NoMoreIceCreamException{
+        if (stock.getMagni() <= 0){
+            throw new NoMoreIceCreamException("No more magnum");
+        }else {
+            profit += priceList.getMagnumPrice(type);
+            stock.setMagni(stock.getMagni() - 1);
+            System.out.println("There are enough magnum");
 
-
-
+        }
+        return new Magnum(type);
     }
 
     @Override
     public double getProfit() {
-        return 0;
+        return profit;
     }
 }
